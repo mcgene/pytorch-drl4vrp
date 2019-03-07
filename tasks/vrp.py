@@ -99,7 +99,9 @@ class VehicleRoutingDataset(Dataset):
         return new_mask.float()
 
     def update_dynamic(self, dynamic, chosen_idx):
-        """Updates the (load, demand) dataset values."""
+        """Updates the (load, demand) dataset values.
+            update after the vehicle pass these place, but the demand would not increase.
+        """
 
         # Update the dynamic elements differently for if we visit depot vs. a city
         visit = chosen_idx.ne(0)
@@ -137,6 +139,7 @@ class VehicleRoutingDataset(Dataset):
 
 def reward(static, tour_indices):
     """
+    just calculat the distance.
     Euclidean distance between all cities / nodes given by tour_indices
     """
 
